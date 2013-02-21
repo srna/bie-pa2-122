@@ -27,12 +27,15 @@ void deleteArray(int* arr)
 
 void sortArray(int len, int* arr)
 {
-	for(int i = 0; i < len; i++)
+	bool switched = false;
+	while (!switched)
 	{
+		switched = false;
 		for(int j = 0; j < len; j++)
 		{
 			if(arr[j] < arr[j-1])
 			{
+				switched = true;
 				int tmp = arr[j-1];
 				arr[j-1] = arr[j];
 				arr[j] = tmp;
