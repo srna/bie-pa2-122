@@ -1,14 +1,33 @@
 #include <iostream>
+#include <limits>
+#include <cstdlib>
+
 using namespace std;
 
 void readArray(int& len, int*& arr)
 {
 	cin >> len;
-	arr = new int[len];
-	for(int i = 0; i < len; i++)
+	while(cin.fail()||len<=0)//if invalid input ask for a valid one
 	{
-		cin >> arr[i];
+		cin.clear();
+		cin.ignore(numeric_limits<int>::max(),'\n');
+		cout<<"Invalid input, please enter a positive integer."<<endl;
+		cin>>len;
 	}
+	arr=new int[len];
+	cout<<"Give numbers : "<<endl;
+	for(int i =0;i<len;i++)
+	{
+		cin>>arr[i];
+		while(cin.fail())//if invalid input ask for a valid one
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<int>::max(),'\n');
+			cout<<"Invalid input, please enter an integer."<<endl;
+			cin>>arr[i];
+		}
+	}
+	cout<<endl;
 }
 
 void printArray(int len, int* arr)
@@ -25,23 +44,14 @@ void deleteArray(int* arr)
 	delete [] arr;
 }
 
-void sortArray(int len, int* arr)
+int compare(const void*a,const void*b)//compare made for qsort
 {
-	bool switched = false;
-	while (!switched)
-	{
-		switched = false;
-		for(int j = 0; j < len; j++)
-		{
-			if(arr[j] < arr[j-1])
-			{
-				switched = true;
-				int tmp = arr[j-1];
-				arr[j-1] = arr[j];
-				arr[j] = tmp;
-			}
-		}
-	}
+  return ( *(int*)a - *(int*)b);
+}
+
+void qsortArray(int len, int *arr)//standard implementation
+{
+	qsort(arr,len,sizeof(int),compare);
 }
 
 int main()
@@ -53,7 +63,7 @@ int main()
 	cout << "You entered array:" << endl;
 	printArray(len,arr);
 
-	sortArray(len, arr);
+	qsortArray(len, arr);
 
 	cout << "Sorted array:" << endl;
 	printArray(len,arr);
