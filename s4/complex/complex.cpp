@@ -8,9 +8,22 @@ Complex::Complex(float _re, float _im)
 {
 }
 
-void Complex::print() const
+void Complex::print(std::ostream &os) const
 {
-    std::cout << re << "+" << im << "i";
+    const char sign = im < 0 ? '-' : '+';
+
+    if (re != 0 || im == 0)
+        os << re;
+
+    if (im != 0) {
+        if (re != 0 || im < 0)
+            os << sign;
+
+        if (std::abs(im) != 1)
+            os << std::abs(im);
+
+        os << "i";
+    }
 }
 
 float Complex::abs() const
@@ -40,7 +53,7 @@ Complex operator-(const Complex& a, const Complex& b)
 
 std::ostream& operator<<(std::ostream& os, const Complex& c)
 {
-    os << c.re << "+" << c.im << "i";
+    c.print(os);
     return os;
 }
 

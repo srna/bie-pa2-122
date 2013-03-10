@@ -8,7 +8,7 @@ class Complex {
 public:
     Complex(float _re = 0, float _im = 0);
 
-    void print() const;
+    void print(std::ostream &os = std::cout) const;
     float abs() const;
     float getRe() const;
     float getIm() const;

@@ -17,5 +17,11 @@ int main(void) {
   cout << "x+1=" << x+1 << endl;
   cout << "2+x=" << 2+x << endl;
 
+  cout << Complex(0, 0) << endl;
+  cout << Complex(0, -1) << endl;
+  cout << Complex(0, 1) << endl;
+  cout << Complex(0, 2) << endl;
+
   return 0;
 }
+
