@@ -15,6 +15,7 @@ public:
 
     friend Complex operator+(const Complex& a, const Complex& b);
     friend Complex operator-(const Complex& a, const Complex& b);
+    friend Complex operator*(const Complex& a, const Complex& b);
     friend std::ostream& operator<< (std::ostream& os, const Complex& c);
 };
 

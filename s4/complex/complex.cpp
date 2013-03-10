@@ -51,6 +51,15 @@ Complex operator-(const Complex& a, const Complex& b)
     return Complex(a.re - b.re, a.im - b.im);
 }
 
+Complex operator*(const Complex& a, const Complex& b)
+{
+    // (a,b) * (c,d) = (ac - bd, ad + bc)
+    float real = a.re * b.re - a.im * b.im;
+    float imag = a.re * b.im + a.im * b.re;
+
+    return Complex(real, imag);
+}
+
 std::ostream& operator<<(std::ostream& os, const Complex& c)
 {
     c.print(os);

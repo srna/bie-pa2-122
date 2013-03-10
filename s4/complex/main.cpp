@@ -22,6 +22,11 @@ int main(void) {
   cout << Complex(0, 1) << endl;
   cout << Complex(0, 2) << endl;
 
+  cout << (Complex(3,4) * Complex(6,-5)) << endl;
+  cout << (Complex(2,6) * Complex(0,1)) << endl;
+  cout << (8 * Complex(-2,-1)) << endl;
+  cout << (0 * Complex(-2,-1)) << endl;
+
   return 0;
 }
 
