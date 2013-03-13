@@ -2,4 +2,4 @@ notes.txt
 *.o
 *.out
 .DS_Store
-
+*.swp

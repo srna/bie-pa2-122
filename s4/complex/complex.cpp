@@ -2,39 +2,67 @@
 #include <iostream>
 #include <cmath>
 
-Complex::Complex(float _re,float _im){
-	re=_re;
-	im=_im;
+Complex::Complex(float _re, float _im)
+    : re(_re)
+    , im(_im)
+{
 }
-void Complex::print() const {
-	std::cout<<re<<"+"<<im<<"i";
+
+void Complex::print(std::ostream &os) const
+{
+    const char sign = im < 0 ? '-' : '+';
+
+    if (re != 0 || im == 0)
+        os << re;
+
+    if (im != 0) {
+        if (re != 0 || im < 0)
+            os << sign;
+
+        if (std::abs(im) != 1)
+            os << std::abs(im);
+
+        os << "i";
+    }
 }
 
 float Complex::abs() const
 {
-	return sqrt(re*re+im*im);
+    return sqrt(re * re + im * im);
 }
 
 float Complex::getRe() const
 {
-	return re;
+    return re;
 }
 
 float Complex::getIm() const
 {
-	return im;
+    return im;
 }
 
-Complex operator+(const Complex& a, const Complex& b){
-	return Complex(a.re+b.re,a.im+b.im);
-}
-
-Complex operator-(const Complex& a, const Complex& b){
-	return Complex(a.re-b.re,a.im-b.im);
-}
-
-std::ostream& operator<< (std::ostream& os, const Complex& c)
+Complex operator+(const Complex& a, const Complex& b)
 {
-	os << c.re << "+" << c.im << "i";
-	return os;
+    return Complex(a.re + b.re, a.im + b.im);
 }
+
+Complex operator-(const Complex& a, const Complex& b)
+{
+    return Complex(a.re - b.re, a.im - b.im);
+}
+
+Complex operator*(const Complex& a, const Complex& b)
+{
+    // (a,b) * (c,d) = (ac - bd, ad + bc)
+    float real = a.re * b.re - a.im * b.im;
+    float imag = a.re * b.im + a.im * b.re;
+
+    return Complex(real, imag);
+}
+
+std::ostream& operator<<(std::ostream& os, const Complex& c)
+{
+    c.print(os);
+    return os;
+}
+
