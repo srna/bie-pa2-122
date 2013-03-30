@@ -1,0 +1,4 @@
+[2013-3-21 15:40:36] arr_template.cpp:55 error: Item not found
+[2013-3-21 15:53:29] arr_template.cpp:58 error: Item not found
+[2013-3-21 16:0:12] arr_template.cpp:60 error: Item '4.5' not found
+[2013-3-21 17:2:1] arr_template.cpp:60 error: Item '4.5' not found
